@@ -1,0 +1,9 @@
+{
+	"name": "adf-mrid-demo-01",
+	"location": "westus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8b27b54c-c256-44b9-bb31-8db622c444ec",
+		"tenantId": "fbaa5e15-1135-49c2-9dbc-5cfccc5736dc"
+	}
+}
