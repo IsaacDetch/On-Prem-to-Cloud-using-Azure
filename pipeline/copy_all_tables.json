@@ -35,7 +35,7 @@
 					{
 						"activity": "Look for all tables",
 						"dependencyConditions": [
-							"Completed"
+							"Succeeded"
 						]
 					}
 				],
@@ -62,7 +62,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@{concat('SELECT * FROM', item().SchemaName, '.', item().TableName)}",
+										"value": "@{concat('SELECT * FROM ', item().SchemaName, '.', item().TableName)}   ",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -96,17 +96,7 @@
 							"outputs": [
 								{
 									"referenceName": "ParquetTables",
-									"type": "DatasetReference",
-									"parameters": {
-										"SchemaName": {
-											"value": "@item.SchemaName    ",
-											"type": "Expression"
-										},
-										"TableName": {
-											"value": "@item().TableName   ",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							]
 						}
