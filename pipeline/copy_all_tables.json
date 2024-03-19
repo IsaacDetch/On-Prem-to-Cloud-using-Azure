@@ -22,14 +22,8 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "SqlDBTables",
-						"type": "DatasetReference",
-						"parameters": {
-							"TableName": {
-								"value": "@item.TableName  ",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "SqlDBServer",
+						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
 				}
@@ -67,52 +61,15 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": {
-										"value": "@{concat('SELECT * FROM ', item().SchemaName, '.', item().TableName)}   ",
-										"type": "Expression"
-									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
+								"enableStaging": false
 							},
 							"inputs": [
 								{
-									"referenceName": "SqlServerCopy",
+									"referenceName": "SqlServerTable",
 									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ParquetTables",
-									"type": "DatasetReference",
-									"parameters": {
-										"schemaname": {
-											"value": "@item().SchemaName",
-											"type": "Expression"
-										},
-										"tablename": {
-											"value": "@item().TableName",
-											"type": "Expression"
-										}
-									}
 								}
 							]
 						}
