@@ -71,7 +71,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ParquetTables')]",
+			"name": "[concat(parameters('factoryName'), '/ParquetTable')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -93,11 +93,11 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@{concat(dataset().tablename,'.parquet')}  ",
+							"value": "@{concat(dataset().tablename,'.parquet')}",
 							"type": "Expression"
 						},
 						"folderPath": {
-							"value": "@{concat(dataset().schemaname,  '/',dataset().tablename)} ",
+							"value": "@{concat(dataset().schemaname, '/',dataset().tablename)}",
 							"type": "Expression"
 						},
 						"fileSystem": "bronze"
@@ -139,7 +139,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SqlDBTables')]",
+			"name": "[concat(parameters('factoryName'), '/SqlDBServer')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -175,6 +175,41 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "onpremsqlserver",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"TableName": {
+						"type": "string"
+					},
+					"SchemaName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": {
+						"value": "@dataset().SchemaName",
+						"type": "Expression"
+					},
+					"table": {
+						"value": "@dataset().TableName",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/onpremsqlserver')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/copy_all_tables')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -200,7 +235,7 @@
 								"partitionOption": "None"
 							},
 							"dataset": {
-								"referenceName": "SqlDBTables",
+								"referenceName": "SqlDBServer",
 								"type": "DatasetReference",
 								"parameters": {}
 							},
@@ -241,7 +276,7 @@
 										"source": {
 											"type": "SqlServerSource",
 											"sqlReaderQuery": {
-												"value": "@{concat('SELECT * FROM ', item().SchemaName, '.', item().TableName)}   ",
+												"value": "@{concat('SELECT * FROM', item().SchemaName, '.', item().TableName)}",
 												"type": "Expression"
 											},
 											"queryTimeout": "02:00:00",
@@ -275,7 +310,7 @@
 									],
 									"outputs": [
 										{
-											"referenceName": "ParquetTables",
+											"referenceName": "ParquetTable",
 											"type": "DatasetReference",
 											"parameters": {
 												"schemaname": {
@@ -300,9 +335,9 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/SqlDBTables')]",
+				"[concat(variables('factoryId'), '/datasets/SqlDBServer')]",
 				"[concat(variables('factoryId'), '/datasets/SqlServerCopy')]",
-				"[concat(variables('factoryId'), '/datasets/ParquetTables')]"
+				"[concat(variables('factoryId'), '/datasets/ParquetTable')]"
 			]
 		}
 	]
