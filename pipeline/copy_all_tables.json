@@ -23,7 +23,13 @@
 					},
 					"dataset": {
 						"referenceName": "SqlDBTables",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"TableName": {
+								"value": "@item.TableName  ",
+								"type": "Expression"
+							}
+						}
 					},
 					"firstRowOnly": false
 				}
