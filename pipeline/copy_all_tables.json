@@ -62,7 +62,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@{concat('SELECT * FROM', item().SchemaName, '.', item().TableName)}",
+										"value": "@{concat('select * from', item().SchemaName,'.',item().TableName)}",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
@@ -98,11 +98,11 @@
 									"referenceName": "ParquetTable",
 									"type": "DatasetReference",
 									"parameters": {
-										"schemaname": {
+										"SchemaName": {
 											"value": "@item().SchemaName",
 											"type": "Expression"
 										},
-										"tablename": {
+										"TableName": {
 											"value": "@item().TableName",
 											"type": "Expression"
 										}
