@@ -68,9 +68,13 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SQLTableDynamic",
+									"referenceName": "DS_SQLServerCopy",
 									"type": "DatasetReference",
 									"parameters": {
+										"table": {
+											"value": "@item().TableName",
+											"type": "Expression"
+										},
 										"schema": {
 											"value": "@item().SchemaName",
 											"type": "Expression"
