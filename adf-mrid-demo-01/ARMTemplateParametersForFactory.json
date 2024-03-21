@@ -3,7 +3,7 @@
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"factoryName": {
-			"value": "adf-mrid-demo-01"
+			"value": "ADF-MRID-DEMO-01"
 		},
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""

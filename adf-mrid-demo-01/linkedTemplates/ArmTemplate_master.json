@@ -5,7 +5,7 @@
 		"factoryName": {
 			"type": "string",
 			"metadata": "Data Factory name",
-			"defaultValue": "adf-mrid-demo-01"
+			"defaultValue": "ADF-MRID-DEMO-01"
 		},
 		"AzureDataLakeStorage1_accountKey": {
 			"type": "secureString",
