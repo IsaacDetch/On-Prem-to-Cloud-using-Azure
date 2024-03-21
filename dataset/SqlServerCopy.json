@@ -5,6 +5,14 @@
 			"referenceName": "onpremsqlserver",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"@dataset().SchemaName": {
+				"type": "string"
+			},
+			"@dataset().TableName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [],
