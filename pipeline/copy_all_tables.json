@@ -29,7 +29,7 @@
 				}
 			},
 			{
-				"name": "ForEach Schema Table",
+				"name": "ForEachSchemaTable",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -42,7 +42,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Copy Each Table').output.value",
+						"value": "@activity('GetListTable').output.value",
 						"type": "Expression"
 					},
 					"activities": [
