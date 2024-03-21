@@ -42,7 +42,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Look up tables').output.value",
+						"value": "@activity('Copy Each Table').output.value",
 						"type": "Expression"
 					},
 					"activities": [
@@ -61,10 +61,6 @@
 							"typeProperties": {
 								"source": {
 									"type": "SqlServerSource",
-									"sqlReaderQuery": {
-										"value": "SELECT * FROM TableName\n\n\n",
-										"type": "Expression"
-									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -72,8 +68,14 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "DS_SQLServerCopy",
-									"type": "DatasetReference"
+									"referenceName": "SQLTableDynamic",
+									"type": "DatasetReference",
+									"parameters": {
+										"schema": {
+											"value": "@item().SchemaName",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
