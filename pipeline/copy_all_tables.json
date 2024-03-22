@@ -84,6 +84,10 @@
 									"referenceName": "SQLTableDynamic",
 									"type": "DatasetReference",
 									"parameters": {
+										"table": {
+											"value": "@item().TableName",
+											"type": "Expression"
+										},
 										"schema": {
 											"value": "@item().SchemaName",
 											"type": "Expression"
@@ -96,10 +100,6 @@
 									"referenceName": "SQLTableDynamic",
 									"type": "DatasetReference",
 									"parameters": {
-										"schema": {
-											"value": "@item().SchemaName",
-											"type": "Expression"
-										},
 										"table": {
 											"value": "@item().TableName",
 											"type": "Expression"
