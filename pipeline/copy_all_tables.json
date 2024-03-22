@@ -22,7 +22,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "DS_SqlServer_Copy",
+						"referenceName": "SQLServerLookupTable",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
