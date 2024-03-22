@@ -93,15 +93,15 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "DS_SQLServerCopy",
+									"referenceName": "SQLTableDynamic",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": {
-											"value": "@item().TableName",
-											"type": "Expression"
-										},
 										"schema": {
 											"value": "@item().SchemaName",
+											"type": "Expression"
+										},
+										"table": {
+											"value": "@item().TableName",
 											"type": "Expression"
 										}
 									}
