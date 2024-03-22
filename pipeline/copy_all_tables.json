@@ -65,9 +65,13 @@
 									"partitionOption": "None"
 								},
 								"sink": {
-									"type": "SqlServerSink",
-									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
 								},
 								"enableStaging": false,
 								"translator": {
@@ -97,11 +101,11 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "SQLTableDynamic",
+									"referenceName": "ParquetDynamic",
 									"type": "DatasetReference",
 									"parameters": {
-										"table": {
-											"value": "@item().TableName",
+										"filename": {
+											"value": "@concat(item().SchemaName,'_',item().TableName,',parquet')",
 											"type": "Expression"
 										}
 									}
